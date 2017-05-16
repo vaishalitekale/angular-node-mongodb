@@ -1,0 +1,44 @@
+<div class="container-fluid login_page">
+<div class="row">
+        <div class="container">
+<div class="navigation_12 text-right">
+            <ul>
+              <li><a href="javascript:void(0)">Home</a></li>
+              <li><a href="javascript:void(0)">About</a></li>
+              <li><a href="javascript:void(0)">Blog</a></li>
+            </ul>
+          </div>
+           </div>
+      </div>
+<div class="login_area">
+    <div class="container">
+        <div class="col-md-6 col-sm-12 col-xs-12">
+            <div class="logo">
+                <a href="javascript:void(0)"><img src="image/logo-graspoy-new.png" alt="logo" class="img-responsive"></a>
+            </div>
+        </div>
+        <div class="col-md-6 col-sm-12 col-xs-12">
+            <form >
+                <h2>Create Account</h2>
+                <div class="email_area">
+                    <label>Email</label>
+                    <input type="email" class="email" ng-model="username.email">
+                </div>
+                <div class="pass_area">
+                    <label>Password</label>
+                    <input type="password" class="password" ng-model="username.password">
+                </div>
+                <div class="forget_area">
+                    <a href="javascript:void(0)">Forget Password?</a>
+                </div>
+                <div class="submit_area">
+                    <input type="submit" value="Create" ng-click="createAccount()">
+                </div><a ui-sref="login">Login</a>
+            </form>
+
+                 
+        </div>
+    </div>
+</div>
+
+</div>

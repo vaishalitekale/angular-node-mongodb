@@ -1,0 +1,177 @@
+<!--banner area start-->
+<style>
+    .serch_boxx {
+        position: relative;
+        width: 219px;
+        box-sizing: border-box;
+        border-bottom: 1px solid #9a9a9a;
+        padding: 0 0 13px 0;
+    }
+</style>
+<section>
+    <div class="banner">
+        <img src="image/banner_img.png" alt="banner_icon" class="img-responsive">
+    </div>
+</section>
+<!--banner area end-->
+<!--Search_section Start-->
+<section class="Search_section">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 col-sm-6 col-xs-12 left_side">
+                <h2 class="pull-left">LIST OF RESELLER</h2>
+                <div class="plus_point pull-left">
+                    <a href="javascript:void(0)" ng-click="addReseller()"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span></a>
+                </div>
+            </div>
+            <div class="col-md-6 col-sm-6 col-xs-12 pull-right right_side">
+                <div class="srching">
+                    <label for="">Search For</label>
+                    <div class="serch_boxx">
+                        <input type="text" class="src_bar" ng-model="resFilter">
+                        <a href="javascript:void(0)" class="src_btn"><img src="image/src_icon.png" alt="src_icon"></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!--Search_section End-->
+<!-- Table Start-->
+<section>
+    <div class="container">
+        <div class="">
+            <div class="table-responsive">
+                <table class="table listed_table">
+                    <thead>
+                        <tr>
+                            <!--<th>Select</th>-->
+                            <th>Logo</th>
+                            <th>Image</th>
+                            <th>
+                                <a ng-click="sortType = 'firstName'; sortReverse = !sortReverse">
+                                FirstName
+                                <span ng-show="sortType == 'firstName' && !sortReverse" class="fa fa-caret-down"></span>
+                                <span ng-show="sortType == 'firstName' && sortReverse" class="fa fa-caret-up"></span>
+                              </a>
+                            </th>
+                            <th>
+                                <a ng-click="sortType = 'lastName'; sortReverse = !sortReverse">
+                                LastName
+                                <span ng-show="sortType == 'lastName' && !sortReverse" class="fa fa-caret-down"></span>
+                                <span ng-show="sortType == 'lastName' && sortReverse" class="fa fa-caret-up"></span>
+                              </a>
+                            </th>
+                            <th>
+                                <a ng-click="sortType = 'username'; sortReverse = !sortReverse">
+                                UserName
+                                <span ng-show="sortType == 'username' && !sortReverse" class="fa fa-caret-down"></span>
+                                <span ng-show="sortType == 'username' && sortReverse" class="fa fa-caret-up"></span>
+                              </a>
+                            </th>
+                            <th>
+                                <a ng-click="sortType = 'company'; sortReverse = !sortReverse">
+                                Comapany
+                                <span ng-show="sortType == 'company' && !sortReverse" class="fa fa-caret-down"></span>
+                                <span ng-show="sortType == 'company' && sortReverse" class="fa fa-caret-up"></span>
+                              </a>
+                            </th>
+                            <th>
+                                <a ng-click="sortType = 'email'; sortReverse = !sortReverse">
+                                Email
+                                <span ng-show="sortType == 'email' && !sortReverse" class="fa fa-caret-down"></span>
+                                <span ng-show="sortType == 'email' && sortReverse" class="fa fa-caret-up"></span>
+                              </a>
+                            </th>
+                            <th>Detail/Plan</th>
+                            <th>Status</th>
+                            <th>Actions</th>
+                        </tr>
+
+                    </thead>
+
+                    <tbody>
+
+                        <tr ng-if="showLoader">
+                            <td colspan="10">
+                                <div ng-show="showLoader" style="text-align: center;">
+                                    <!-- so this div containing img will be dislpayed only when the showLoader is equal to true-->
+                                    <img src="../image/loader.gif" style="width: 10%;">
+                                    <!-- or any other spinner -->
+                                </div>
+                            </td>
+                        </tr>
+                        <tr ng-if="resellers.length == 0">
+                            <td colspan="10">No reseller created yet, Please click add button above to create reseller</td>
+                        </tr>
+
+
+                        <!--<tr dir-paginate="reseller in resellers | filter : resFilter ">-->
+                        <tr ng-repeat="reseller in resellers | filter : resFilter ">
+                            <!--<td><input type="checkbox"></td>-->
+                            <td ng-if="reseller.companyLogoURL != null"><img style=" max-width: 40px" ng-src="{{'/static/'+reseller.companyLogoURL}}" alt="logo" class="img-responsive"></td>
+                            <td ng-if="reseller.companyLogoURL == null"><img src="image/table_logo.png" alt="logo" class="img-responsive"></td>
+                            <td ng-if="reseller.profileImageURL != null"><img style=" max-width: 40px" ng-src="{{'/static/'+reseller.profileImageURL}}" alt="logo" class="img-responsive"></td>
+                            <td ng-if="reseller.profileImageURL == null"><img src="image/table_logo.png" alt="logo" class="img-responsive"></td>
+                            <td>{{reseller.firstName}}</td>
+                            <td>{{reseller.lastName}}</td>
+                            <td>{{reseller.userName}}</td>
+                            <td>{{reseller.conpanyName}}</td>
+                            <td>{{reseller.email}}</td>
+                            <td>{{reseller.contractTerm}}</td>
+                            <td ng-class="{inactive_status: reseller.status == 'Inactive'}" class="status_12">{{reseller.status}}</td>
+                            <td>
+                                <a href="javascript:void(0)" ng-click="editReseller(reseller)"><img src="image/edit_icon.png" alt="edit logo"></a>
+                                <a href="javascript:void(0)" ng-click="deleteReseller(reseller)"><img src="image/delete_icon.png" alt="delete icon"></a>
+                            </td>
+                        </tr>
+                        <!--<tr class="Inactive_row">
+                    <td><input type="checkbox"></td>
+                    <td><img src="image/table_logo.png" alt="logo" class="img-responsive"></td>
+                    <td><img src="image/table_logo.png" alt="logo" class="img-responsive"></td>
+                    <td>Jamie</td>
+                    <td>Anderson</td>
+                    <td>Gypsy_soul</td>
+                    <td>Black Sabbath Pvt. Ltd.</td>
+                    <td>Rangers@rocketmail.com</td>
+                    <td>Plan 2</td>
+                    <td class="inactive_status status_12">Inactive</td>
+                    <td><a href="#"><img src="image/edit_icon.png" alt="edit logo"></a><a href="#"><img src="image/delete_icon.png" alt="delete icon"></a></td>
+                  </tr>
+                  <tr>
+                    <td><input type="checkbox"></td>
+                    <td><img src="image/table_logo.png" alt="logo" class="img-responsive"></td>
+                    <td><img src="image/table_logo.png" alt="logo" class="img-responsive"></td>
+                    <td>Stacky</td>
+                    <td>Williams</td>
+                    <td>Raiders</td>
+                    <td>P & C Pvt. Ltd.</td>
+                    <td>Sticktyhead@hotmail.com</td>
+                    <td>Plan 3</td>
+                    <td class="status_12">Active</td>
+                    <td><a href="#"><img src="image/edit_icon.png" alt="edit logo"></a><a href="#"><img src="image/delete_icon.png" alt="delete icon"></a></td>
+                  </tr>-->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Table end-->
+
+<!-- Pagination Start -->
+<section>
+    <div class="container">
+
+        <div class="pagination_area text-center">
+            <!--<dir-pagination-controls></dir-pagination-controls>-->
+
+        </div>
+    </div>
+</section>
+<!-- Pagination End -->
+<!--Footer area start-->
+<footer>
+    <p>Copyright &copy GraspU</p>
+</footer>
+<!--Footer area END-->

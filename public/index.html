@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Home</title>
+
+  <!-- Bootstrap core CSS -->
+  <link href="css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
+  <link href="bower_components/angularjs-datepicker/src/css/angular-datepicker.css" rel="stylesheet" type="text/css" />
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link rel="stylesheet" href="bower_components/angular-notify/styles/css/angular-notify-flat.min.css" id="notifyTheme">
+
+  <script src="bower_components/angular/angular.js"></script>
+  <script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
+  <script src="bower_components/angular-resource/angular-resource.js"></script>
+  <script src="bower_components/angularjs-datepicker/src/js/angular-datepicker.js"></script>
+  <script src="bower_components/angular-notify/scripts/dist/angular-notify.min.js"></script>
+  <script src="bower_components/angularUtils-pagination/dirPagination.js"></script>
+
+
+
+  <!-- Custom styles for this template -->
+  <link href="css/style.css" rel="stylesheet">
+  <link href="css/media.css" rel="stylesheet">
+  <link rel="icon" href="image/favicon.png">
+
+  <!-- Application Script -->
+  <script src="app/app.js"></script>
+  <script src="app/router/router.js"></script>
+
+  <!-- factory -->
+  <script src="app/common/factory/resellerFactory.js"></script>
+  <script src="app/common/factory/authToken.js"></script>
+  <script src="app/common/factory/authInterceptor.js"></script>
+  <script src="app/common/factory/clientFactory.js"></script>
+  <script src="app/common/factory/lessonFactory.js"></script>
+
+  <!-- services -->
+  <script src="app/common/services/authService.js"></script>
+  <script src="app/common/services/dataShareService.js"></script>
+  <script src="app/common/services/fileUploadService.js"></script>
+  <script src="app/common/services/flashService.js"></script>
+
+
+  <!-- directive -->
+  <script src="app/common/directive/fileModelDir.js"></script>
+
+  <!-- Controllers -->
+  <script src="app/controller/HeaderCtrl.js"></script>
+  <script src="app/controller/LoginCtrl.js"></script>
+  <script src="app/controller/RegisterCtrl.js"></script>
+  <script src="app/controller/HomeCtrl.js"></script>
+  <script src="app/controller/ResellerCtrl.js"></script>
+  <script src="app/controller/ListClientCtrl.js"></script>
+  <script src="app/controller/ListResellerCtrl.js"></script>
+  <script src="app/controller/ListLeasonsCtrl.js"></script>
+  <script src="app/controller/AddLeasonsCtrl.js"></script>
+  <script src="app/controller/AddClientCtrl.js"></script>
+
+</head>
+
+<body ng-app="graspu">
+
+
+  <ng-include src="'app/template/header.html'"></ng-include>
+
+  <div ui-view></div>
+  <div notifybar style="position:absolute;bottom:0;right:0"></div>
+
+  <script src="js/main_js.js"></script>
+  <script src="js/bootstrap.min.js"></script>
+  <!--<script src="js/custom_jquery.js"></script>-->
+</body>
+
+</html>

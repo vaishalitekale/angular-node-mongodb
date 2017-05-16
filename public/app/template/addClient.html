@@ -1,0 +1,251 @@
+<!--banner area start-->
+<section>
+  <div class="banner">
+    <img src="image/banner_img.png" alt="banner_icon" class="img-responsive">
+  </div>
+</section>
+<!--banner area end-->
+<!-- form-Area Start-->
+<section class="sign_up">
+  <div class="container">
+    <div class="col-md-12 col-sm-12">
+      <h1>ADD CLIENT</h1>
+    </div>
+    <form name="clientForm" novalidate>
+      <div class="col-md-6 col-sm-6">
+        <div class="first_name">
+          <label>First Name</label>
+          <input type="text" class="first_name" ng-model="client.firstName" ng-class="{ 'has-error' : (clientForm.firstName.$dirty || submitted) && clientForm.firstName.$error.required}" name="firstName" required>
+          <p ng-show="(clientForm.firstName.$dirty || submitted) && clientForm.firstName.$error.required" class="help-block"> name is required.</p>
+        </div>
+      </div>
+      <div class="col-md-6 col-sm-6">
+        <div class="last_name">
+          <label>Last Name</label>
+          <input type="text" class="last_name" ng-model="client.lastName" ng-class="{ 'has-error' : (clientForm.lastName.$dirty || submitted) && clientForm.lastName.$error.required}" name="lastName" required>
+          <p ng-show="(clientForm.lastName.$dirty || submitted) && clientForm.lastName.$error.required" class="help-block">last name is required.</p>
+        </div>
+      </div>
+      <div class="col-md-6 col-sm-6">
+        <div class="your_email">
+          <label>Email</label>
+          <input type="email" class="your_email" ng-model="client.email" ng-class="{ 'has-error' : (clientForm.email.$dirty || submitted || clientForm.email.$error.email)  && clientForm.email.$invalid}" name="email" required>
+          <p ng-show="(clientForm.email.$dirty || submitted )  && clientForm.email.$error.required && clientForm.email.$invalid" class="help-block">Email is required.</p>
+          <p ng-show="(clientForm.email.$dirty || submitted ) && clientForm.email.$error.email  && clientForm.email.$invalid" class="help-block">Email not valid.</p>
+        </div>
+      </div>
+      <div class="col-md-6 col-sm-6">
+        <div class="first_name">
+          <label>UserName</label>
+          <input ng-readonly="editableMode == true" type="text" class="UserName" ng-model="client.username" ng-class="{ 'has-error' : (clientForm.userName.$dirty || submitted) && clientForm.userName.$error.required}" name="userName" required>
+          <p ng-show="(clientForm.userName.$dirty || submitted) && clientForm.userName.$error.required" class="help-block">Username is required.</p>
+        </div>
+      </div>
+
+      <div class="col-md-6 col-sm-6">
+        <div class="Password">
+          <label>Password</label>
+          <input type="password" class="Password" ng-model="client.password" ng-class="{ 'has-error' : (clientForm.password.$dirty || submitted) && clientForm.password.$error.required}" name="password" required>
+          <p ng-show="(clientForm.password.$dirty || submitted) && clientForm.password.$error.required" class="help-block">Password is required.</p>
+        </div>
+      </div>
+      <div class="col-md-6 col-sm-6">
+        <div class="Company Name">
+          <label>Company</label>
+          <input type="text" class="UserName" ng-model="client.company">
+        </div>
+      </div>
+      <div class="col-md-6 col-sm-6">
+        <div class="Status">
+          <label>Status</label>
+          <select name="mySelect" id="mySelect" ng-options="option.name for option in status.availableOptions track by option.id" ng-model="status.selectedOption" ng-change="updateStatus()"></select>
+        </div>
+      </div>
+      <div class="col-md-6 col-sm-6">
+        <div class="Status">
+          <label>Type of business</label>
+          <select name="mySelbussiness_typeect" id="" ng-options="option.name for option in bussinesstype.availableOptions track by option.id" ng-model="bussinesstype.selectedOption" ng-change="updatebussiness_type()"></select>
+        </div>
+      </div>
+      <div class="col-md-6 col-sm-6">
+        <div class="Status">
+          <label># of Graspers</label>
+          <input type="number" min="0" class="UserName" ng-model="client.graspersQuantity" ng-class="{ 'has-error' : (clientForm.graspersQuantity.$dirty || submitted) && clientForm.graspersQuantity.$error.required}" name="graspersQuantity" required>
+          <p ng-show="(clientForm.graspersQuantity.$dirty || submitted) && clientForm.graspersQuantity.$error.required" class="help-block"># of graspers are required.</p>
+        </div>
+      </div>
+      <div class="col-md-6 col-sm-6">
+        <div class="Status">
+          <label>Contract Terms</label>
+          <select name="Contract_Terms" id="" ng-options="option.name for option in Contract_Terms.availableOptions track by option.id" ng-model="Contract_Terms.selectedOption" ng-change="updateContract_Terms()"></select>
+        </div>
+      </div>
+      <div class="col-md-6 col-sm-6">
+        <div class="Physical_Address">
+          <label>Physical Address</label>
+          <input type="text" class="address_1" placeholder="Address 1" ng-model="client.physicalAddress.address1">
+          <input type="text" class="address_2" placeholder="Address 2" ng-model="client.physicalAddress.address2">
+          <div class="col-sm-6 Choose_city"><input type="text" class="city" placeholder="City" ng-model="client.physicalAddress.city"></div>
+          <div class="col-sm-6 state_sel">
+            <select name="state" id="" ng-options="option.name for option in state.availableOptions track by option.id" ng-model="state.selectedOption" ng-change="updatestate()"></select>
+          </div>
+          <div class="col-sm-6 padd0"><input type="text" class="zip_code" placeholder="Zip" ng-model="client.physicalAddress.zip"></div>
+        </div>
+      </div>
+      <div class="col-md-6 col-sm-6">
+        <div class="Mailing_Address">
+          <label>Mailing Address <span class="same_address" >Same As Physical Address
+          <input type="checkbox" class="same_address12" ng-model="client.mailingAddress.sameAsPhysicalAddress" ng-change="mailAddSameAsPhyAdd()">
+          </span>
+        </label>
+          <input type="text" class="address_1" placeholder="Address 1" ng-model="client.mailingAddress.address1">
+          <input type="text" class="address_2" placeholder="Address 2" ng-model="client.mailingAddress.address2">
+          <div class="col-sm-6 Choose_city"><input type="text" class="city" placeholder="City" ng-model="client.mailingAddress.city"></div>
+          <div class="col-sm-6 state_sel">
+            <select name="stateMail" id="" ng-options="option.name for option in stateMail.availableOptions track by option.id" ng-model="stateMail.selectedOption" ng-change="updatestateMail()"></select>
+
+          </div>
+          <div class="col-sm-6 padd0"><input type="text" class="zip_code" placeholder="Zip" ng-model="client.mailingAddress.zip"></div>
+        </div>
+      </div>
+      <div class="col-md-6 col-sm-6">
+        <div class="Biling_Address">
+          <label>Biling Address<span class="same_address">Same As Mailing Address
+          <input type="checkbox" class="same_address12" ng-model="client.bilingAddress.sameAsMailingAddress" ng-click="BillAddSameAsMailAdd()"></span></label>
+          <input type="text" class="address_1" placeholder="Address 1" ng-model="client.bilingAddress.address1">
+          <input type="text" class="address_2" placeholder="Address 2" ng-model="client.bilingAddress.address2">
+          <div class="col-sm-6 Choose_city"><input type="text" class="city" placeholder="City" ng-model="client.bilingAddress.city"></div>
+          <div class="col-sm-6 state_sel">
+            <select name="stateBill" id="" ng-options="option.name for option in stateBill.availableOptions track by option.id" ng-model="stateBill.selectedOption" ng-change="updatestateBill()"></select>
+          </div>
+          <div class="col-sm-6 padd0"><input type="text" class="zip_code" placeholder="Zip" ng-model="client.bilingAddress.zip"></div>
+        </div>
+      </div>
+      <div class="col-md-12 col-sm-12">
+        <div class="Decsion_maker" ng-repeat="item in client.decisionMaker">
+          <label>Decision Maker<span class="same_address">Add More People <a href="javascript:void(0)" ng-click="addMoreDecisionMakers()"><i class="glyphicon glyphicon-plus" aria-hidden="true"></i></a></span></label>
+          <div class="col-sm-6">
+            <input type="text" class="Decsion_Name" placeholder="Name" ng-model="item.name">
+          </div>
+          <div class="col-sm-6">
+            <input type="text" class="Decsion_Title" placeholder="Title" ng-model="item.title">
+          </div>
+          <div class="col-sm-6">
+            <input type="text" class="Decsion_User_Name" placeholder="User Name" ng-model="item.username">
+          </div>
+          <div class="col-sm-6">
+            <input type="password" class="Decsion_password" placeholder="Password" ng-model="item.password">
+          </div>
+          <div class="col-sm-6">
+            <input type="email" class="email_1" placeholder="Email 1" ng-model="item.emailone">
+          </div>
+          <div class="col-sm-6">
+            <input type="email" class="email_2" placeholder="Email 2" ng-model="item.emailtwo">
+          </div>
+          <div class="col-sm-6">
+            <input type="text" class="phone_number" placeholder="Office Phone Number" ng-model="item.officePhoneNo">
+          </div>
+          <div class="col-sm-6">
+            <input type="text" class="number_ext" placeholder="Office Phone Number Extension" ng-model="item.officePhoneNoExt">
+          </div>
+          <div class="col-sm-6">
+            <input type="text" class="Cell_phone" placeholder="Cell phone" ng-model="item.cellPhone">
+          </div>
+          <div class="col-sm-6">
+            <input type="text" class="Other_info" placeholder="Other" ng-model="item.other">
+          </div>
+        </div>
+      </div>
+      <div class="col-md-12 col-sm-12">
+        <div class="Accounting" ng-repeat="item in client.billingAdministrator">
+          <label>Accounting / Billing Administrator<span class="same_address">Add More People<a href="javascript:void(0)" ng-click="addMoreBillingAdministrator()"><i class="glyphicon glyphicon-plus" aria-hidden="true"></i></a></span></label>
+          <div class="col-sm-6">
+            <input type="text" class="Decsion_Name" placeholder="Name" ng-model="item.name">
+          </div>
+          <div class="col-sm-6">
+            <input type="text" class="Decsion_Title" placeholder="Title" ng-model="item.title">
+          </div>
+          <div class="col-sm-6">
+            <input type="email" class="email_1" placeholder="Email 1" ng-model="item.emailone">
+          </div>
+          <div class="col-sm-6">
+            <input type="email" class="email_2" placeholder="Email 2" ng-model="item.emailtwo">
+          </div>
+          <div class="col-sm-6">
+            <input type="text" class="phone_number" placeholder="Office Phone Number" ng-model="item.officePhoneNo">
+          </div>
+          <div class="col-sm-6">
+            <input type="text" class="number_ext" placeholder="Office Phone Number Extension" ng-model="item.officePhoneNoExt">
+          </div>
+          <div class="col-sm-6">
+            <input type="text" class="Cell_phone" placeholder="Cell phone" ng-model="item.cellPhone">
+          </div>
+          <div class="col-sm-6">
+            <input type="text" class="Other_info" placeholder="Other" ng-model="item.other">
+          </div>
+
+        </div>
+
+      </div>
+      <div class="col-sm-6">
+        <div class="contract_expire">
+          <label for="">Contract Expiration Date</label>
+          <datepicker date-format="mediumDate" date-min-limit="{{today}}">
+            <input ng-model="client.contractExpirationDate" type="text" placeholder="Choose expiry date" />
+          </datepicker>
+        </div>
+      </div>
+      <div class="col-sm-6">
+        <div class="pricing">
+          <label for="">Pricing</label>
+          <input type="number" id="datepicker" placeholder="" ng-model="client.pricing">
+        </div>
+      </div>
+      <div class="col-sm-6">
+        <div class="discounts">
+          <label for="">Discounts</label>
+          <input type="number" id="datepicker" placeholder="" ng-model="client.discount">
+        </div>
+      </div>
+
+      <div class="col-sm-12">
+        <div class="row">
+          <div class="col-md-6 col-sm-6">
+            <div class="profile_img">
+              <input type="file" class="upload_pic" id="upload_pic" file-model="profileImage">
+              <h2>Profile Image</h2>
+              <label for="upload_pic">
+                      <div class="outer_box">
+                        <div class="inner_box text-center">
+                          <img src="image/camera_icon.png" alt="camera icon" class="img-responsive" >
+                          <h4>add Profile image</h4>
+                        </div>
+                      </div>
+                    </label>
+            </div>
+          </div>
+          <div class="col-md-6 col-sm-6">
+            <div class="Company_Logo">
+              <input type="file" class="upload_logo" id="upload_logo" file-model="companyLogo">
+              <h2>Company Logo Image</h2>
+              <label for="upload_logo">
+                      <div class="outer_box">
+                        <div class="inner_box text-center">
+                          <img src="image/camera_icon.png" alt="camera icon" class="img-responsive">
+                          <h4>Company logo</h4>
+                        </div>
+                      </div>
+                    </label>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-12 col-sm-12 text-center">
+        <input ng-if="editableMode == false" type="submit" value="Create" class="create_btn" ng-click="createClient()">
+        <input ng-if="editableMode == true" type="submit" value="Update" class="create_btn" ng-click="updateClient()">
+        <!--<input type="submit" value="Create" class="create_btn" ng-click="createClient()">-->
+      </div>
+    </form>
+  </div>
+</section>
+<!-- form-Area end-->

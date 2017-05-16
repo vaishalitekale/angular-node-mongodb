@@ -1,0 +1,289 @@
+<!--banner area start-->
+<section>
+  <div class="banner">
+    <img src="image/banner_img.png" alt="banner_icon" class="img-responsive">
+  </div>
+</section>
+<!--banner area end-->
+<!-- form-Area Start-->
+<form name="resellerForm" novalidate>
+  <section class="sign_up">
+    <div class="container">
+      <div class="col-md-12 col-sm-12">
+        <h1>Reseller</h1>
+      </div>
+      <div class="col-md-6 col-sm-6">
+        <div class="first_name">
+          <label>First Name</label>
+          <input type="text" class="first_name" ng-class="{ 'has-error' : (resellerForm.firstName.$dirty || submitted) && resellerForm.firstName.$error.required}" ng-model="reseller.firstName" name="firstName" required>
+          <!--<p ng-show="resellerForm.firstName.$invalid && !resellerForm.firstName.$pristine" class="help-block">You name is required.</p>-->
+          <p ng-show="(resellerForm.firstName.$dirty || submitted) && resellerForm.firstName.$error.required" class="help-block"> name is required.</p>
+        </div>
+      </div>
+      <div class="col-md-6 col-sm-6">
+        <div class="last_name">
+          <label>Last Name</label>
+          <input type="text" class="last_name" ng-model="reseller.lastName" ng-class="{ 'has-error' : (resellerForm.lastName.$dirty || submitted) && resellerForm.lastName.$error.required}" name="lastName" required>
+          <p ng-show="(resellerForm.lastName.$dirty || submitted) && resellerForm.lastName.$error.required" class="help-block">last name is required.</p>
+        </div>
+      </div>
+      <div class="col-md-6 col-sm-6">
+        <div class="your_email">
+          <label>Email</label>
+          <input type="email" class="your_email" ng-model="reseller.email" ng-class="{ 'has-error' : (resellerForm.email.$dirty || submitted || resellerForm.email.$error.email)  && resellerForm.email.$invalid}" name="email" required>
+          <p ng-show="(resellerForm.email.$dirty || submitted )  && resellerForm.email.$error.required && resellerForm.email.$invalid" class="help-block">Email is required.</p>
+          <p ng-show="(resellerForm.email.$dirty || submitted ) && resellerForm.email.$error.email  && resellerForm.email.$invalid" class="help-block">Email not valid.</p>
+        </div>
+      </div>
+      <div class="col-md-6 col-sm-6">
+        <div class="first_name">
+          <label>UserName</label>
+          <input ng-readonly="editableMode == true" type="text" class="UserName" ng-model="reseller.userName" ng-class="{ 'has-error' : (resellerForm.UserName.$dirty || submitted) && resellerForm.UserName.$error.required}" name="UserName" required>
+          <p ng-show="(resellerForm.UserName.$dirty || submitted) && resellerForm.UserName.$error.required" class="help-block">Username is required</p>
+        </div>
+      </div>
+      <div class="col-md-4 col-sm-4">
+        <div class="Company Name">
+          <label>Company Name</label>
+          <input type="text" class="UserName" ng-model="reseller.conpanyName">
+        </div>
+      </div>
+      <div class="col-md-4 col-sm-4">
+        <div class="Status">
+          <label>Status</label>
+
+          <select name="mySelect" id="mySelect" ng-options="option.name for option in reselersName.availableOptions track by option.id" ng-model="reselersName.selectedOption" ng-change="updateStatus()"></select>
+        </div>
+      </div>
+      <div class="col-md-4 col-sm-4">
+        <div class="Password">
+          <label>Password</label>
+          <input type="password" class="Password" ng-model="reseller.password" ng-class="{ 'has-error' : (resellerForm.password.$dirty || submitted) && resellerForm.password.$error.required}" name="password" required>
+          <p ng-show="(resellerForm.password.$dirty || submitted) && resellerForm.password.$error.required" class="help-block">Password is required</p>
+        </div>
+      </div>
+      <div class="col-md-4 col-sm-4">
+        <div class="Status">
+          <label>Type of business</label>
+          <select name="mySelbussiness_typeect" id="" ng-options="option.name for option in bussinesstype.availableOptions track by option.id" ng-model="bussinesstype.selectedOption" ng-change="updatebussiness_type()"></select>
+        </div>
+      </div>
+      <div class="col-md-4 col-sm-4">
+        <div class="Status">
+          <label>Industry Specialization</label>
+          <select name="Industry_Specialization" id="" ng-options="option.name for option in Industry_Specialization.availableOptions track by option.id" ng-model="Industry_Specialization.selectedOption" ng-change="updateIndustry_Specialization()"></select>
+        </div>
+      </div>
+      <div class="col-md-4 col-sm-4">
+        <div class="Status">
+          <label>Contract Terms</label>
+          <select name="Contract_Terms" id="" ng-options="option.name for option in Contract_Terms.availableOptions track by option.id" ng-model="Contract_Terms.selectedOption" ng-change="updateContract_Terms()"></select>
+        </div>
+      </div>
+      <div class="col-md-6 col-sm-6">
+        <div class="Physical_Address">
+          <label>Physical Address</label>
+          <input type="text" class="address_1" placeholder="Address 1" ng-model="reseller.physicalAddress.address1">
+          <input type="text" class="address_2" placeholder="Address 2" ng-model="reseller.physicalAddress.address2">
+          <div class="col-sm-6 Choose_city"><input type="text" class="city" placeholder="City" ng-model="reseller.physicalAddress.city"></div>
+          <div class="col-sm-6 state_sel">
+            <select name="state" id="" ng-options="option.name for option in state.availableOptions track by option.id" ng-model="state.selectedOption" ng-change="updatestate()"></select>
+          </div>
+          <div class="col-sm-6 padd0"><input type="text" class="zip_code" placeholder="Zip" ng-model="reseller.physicalAddress.zip"></div>
+        </div>
+      </div>
+      <div class="col-md-6 col-sm-6">
+        <div class="Mailing_Address">
+          <label>Mailing Address <span class="same_address" >Same As Physical Address
+          <input type="checkbox" class="same_address12" ng-model="reseller.mailingAddress.sameAsPhysicalAddress" ng-change="mailAddSameAsPhyAdd()">
+          </span>
+        </label>
+          <input type="text" class="address_1" placeholder="Address 1" ng-model="reseller.mailingAddress.address1">
+          <input type="text" class="address_2" placeholder="Address 2" ng-model="reseller.mailingAddress.address2">
+          <div class="col-sm-6 Choose_city"><input type="text" class="city" placeholder="City" ng-model="reseller.mailingAddress.city"></div>
+          <div class="col-sm-6 state_sel">
+            <select name="stateMail" id="" ng-options="option.name for option in stateMail.availableOptions track by option.id" ng-model="stateMail.selectedOption" ng-change="updatestateMail()"></select>
+
+          </div>
+          <div class="col-sm-6 padd0"><input type="text" class="zip_code" placeholder="Zip" ng-model="reseller.mailingAddress.zip"></div>
+        </div>
+      </div>
+      <div class="col-md-6 col-sm-6">
+        <div class="Biling_Address">
+          <label>Biling Address<span class="same_address">Same As Mailing Address
+          <input type="checkbox" class="same_address12" ng-model="reseller.bilingAddress.sameAsMailingAddress" ng-click="BillAddSameAsMailAdd()"></span></label>
+          <input type="text" class="address_1" placeholder="Address 1" ng-model="reseller.bilingAddress.address1">
+          <input type="text" class="address_2" placeholder="Address 2" ng-model="reseller.bilingAddress.address2">
+          <div class="col-sm-6 Choose_city"><input type="text" class="city" placeholder="City" ng-model="reseller.bilingAddress.city"></div>
+          <div class="col-sm-6 state_sel">
+            <select name="stateBill" id="" ng-options="option.name for option in stateBill.availableOptions track by option.id" ng-model="stateBill.selectedOption" ng-change="updatestateBill()"></select>
+          </div>
+          <div class="col-sm-6 padd0"><input type="text" class="zip_code" placeholder="Zip" ng-model="reseller.bilingAddress.zip"></div>
+        </div>
+      </div>
+      <div class="col-md-12 col-sm-12">
+        <div class="Decsion_maker" ng-repeat="item in reseller.decisionMaker">
+          <label>Decision Maker<span class="same_address">Add More People <a href="javascript:void(0)" ng-click="addMoreDecisionMakers()"><i class="glyphicon glyphicon-plus" aria-hidden="true"></i></a></span></label>
+          <div class="col-sm-6">
+            <input type="text" class="Decsion_Name" placeholder="Name" ng-model="item.name">
+          </div>
+          <div class="col-sm-6">
+            <input type="text" class="Decsion_Title" placeholder="Title" ng-model="item.title">
+          </div>
+          <div class="col-sm-6">
+            <input type="text" class="Decsion_User_Name" placeholder="User Name" ng-model="item.username">
+          </div>
+          <div class="col-sm-6">
+            <input type="password" class="Decsion_password" placeholder="Password" ng-model="item.password">
+          </div>
+          <div class="col-sm-6">
+            <input type="email" class="email_1" placeholder="Email 1" ng-model="item.emailone">
+          </div>
+          <div class="col-sm-6">
+            <input type="email" class="email_2" placeholder="Email 2" ng-model="item.emailtwo">
+          </div>
+          <div class="col-sm-6">
+            <input type="text" class="phone_number" placeholder="Office Phone Number" ng-model="item.officePhoneNo">
+          </div>
+          <div class="col-sm-6">
+            <input type="text" class="number_ext" placeholder="Office Phone Number Extension" ng-model="item.officePhoneNoExt">
+          </div>
+          <div class="col-sm-6">
+            <input type="text" class="Cell_phone" placeholder="Cell phone" ng-model="item.cellPhone">
+          </div>
+          <div class="col-sm-6">
+            <input type="text" class="Other_info" placeholder="Other" ng-model="item.other">
+          </div>
+        </div>
+      </div>
+      <div class="col-md-12 col-sm-12">
+        <div class="Accounting" ng-repeat="item in reseller.billingAdministrator">
+          <label>Accounting / Billing Administrator<span class="same_address">Add More People<a href="javascript:void(0)" ng-click="addMoreBillingAdministrator()"><i class="glyphicon glyphicon-plus" aria-hidden="true"></i></a></span></label>
+          <div class="col-sm-6">
+            <input type="text" class="Decsion_Name" placeholder="Name" ng-model="item.name">
+          </div>
+          <div class="col-sm-6">
+            <input type="text" class="Decsion_Title" placeholder="Title" ng-model="item.title">
+          </div>
+          <div class="col-sm-6">
+            <input type="email" class="email_1" placeholder="Email 1" ng-model="item.emailone">
+          </div>
+          <div class="col-sm-6">
+            <input type="email" class="email_2" placeholder="Email 2" ng-model="item.emailtwo">
+          </div>
+          <div class="col-sm-6">
+            <input type="text" class="phone_number" placeholder="Office Phone Number" ng-model="item.officePhoneNo">
+          </div>
+          <div class="col-sm-6">
+            <input type="text" class="number_ext" placeholder="Office Phone Number Extension" ng-model="item.officePhoneNoExt">
+          </div>
+          <div class="col-sm-6">
+            <input type="text" class="Cell_phone" placeholder="Cell phone" ng-model="item.cellPhone">
+          </div>
+          <div class="col-sm-6">
+            <input type="text" class="Other_info" placeholder="Other" ng-model="item.other">
+          </div>
+          <div class="col-sm-12">
+            <p>Payment Choice</p>
+            <div class="row">
+              <div class="col-md-4 col-sm-4">
+                <div class="payment">
+                  <h5>Credit Card</h5>
+                  <img src="image/crdt_card.png" alt="credit_card_img">
+                  <p>Use Your Visa, <br> MasterCard,American <br> Express,Discover,Dinners <br> Club, JCB or Carte <br> Balance Card.
+                  </p>
+                  <input type="radio" name="payment_option" value="Credit card" ng-model="item.paymentChoice">
+                </div>
+              </div>
+              <div class="col-md-4 col-sm-4">
+                <div class="payment">
+                  <h5>PayPal</h5>
+                  <img src="image/paypal.png" alt="credit_card_img">
+                  <p>
+                    Pay Online Quikly and <br> Sequrely With Paypal
+                  </p>
+                  <input type="radio" name="payment_option" value="PayPal" ng-model="item.paymentChoice">
+                </div>
+              </div>
+              <div class="col-md-4 col-sm-4">
+                <div class="payment">
+                  <h5>Bank Wire</h5>
+                  <img src="image/bank_wire.png" alt="credit_card_img">
+                  <p>Reciecve a 1.5% Discount <br> When you pay any Bank <br>wire.
+                  </p>
+                  <input type="radio" name="payment_option" value="Bank wire" ng-model="item.paymentChoice">
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+      <div class="col-sm-6">
+        <div class="contract_expire">
+          <label for="">Contract Expiration Date</label>
+          <datepicker date-format="mediumDate" date-min-limit="{{today}}">
+            <input ng-model="reseller.contractExpirationDate" type="text" placeholder="Choose expiry date" />
+          </datepicker>
+        </div>
+      </div>
+      <div class="col-sm-6">
+        <div class="pricing">
+          <label for="">Pricing</label>
+          <input type="number" id="datepicker" placeholder="" ng-model="reseller.pricing">
+        </div>
+      </div>
+      <div class="col-sm-6">
+        <div class="discounts">
+          <label for="">Discounts</label>
+          <input type="number" id="datepicker" placeholder="" ng-model="reseller.discount">
+        </div>
+      </div>
+      <div class="col-sm-12">
+        <div class="reseller_Terms">
+          <label for="">Exclusive Reseller Terms</label>
+          <input type="text" id="datepicker" placeholder="" ng-model="reseller.resellerTerms">
+        </div>
+      </div>
+      <div class="col-md-6 col-sm-6">
+        <div class="profile_img">
+          <input type="file" class="upload_pic" id="upload_pic" file-model="profileImage">
+          <h2>Profile Image</h2>
+          <label for="upload_pic">
+                <div class="outer_box">
+                  <div class="inner_box text-center">
+                    <img src="image/camera_icon.png" alt="camera icon" class="img-responsive">
+                    <h4>add Profile image</h4>
+                  </div>
+                </div>
+              </label>
+        </div>
+      </div>
+      <div class="col-md-6 col-sm-6">
+        <div class="Company_Logo">
+          <input type="file" class="upload_logo" id="upload_logo" file-model="companyLogo">
+          <h2>Company Logo Image</h2>
+          <label for="upload_logo">
+                <div class="outer_box">
+                  <div class="inner_box text-center">
+                    <img src="image/camera_icon.png" alt="camera icon" class="img-responsive">
+                    <h4>Company logo</h4>
+                  </div>
+                </div>
+
+            </label></div>
+      </div>
+      <div class="col-md-12 col-sm-12 text-center">
+
+        <input ng-if="editableMode == false" type="submit" value="Create" class="create_btn" ng-click="createReseller()">
+        <input ng-if="editableMode == true" type="submit" value="Update" class="create_btn" ng-click="updateReseller()">
+      </div>
+    </div>
+  </section>
+</form>
+<!-- form-Area end-->
+<!--Footer area start-->
+<footer>
+  <p>Copyright &copy GraspU</p>
+</footer>
+<!--Footer area END-->

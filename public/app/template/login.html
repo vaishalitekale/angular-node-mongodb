@@ -1,0 +1,49 @@
+<div class="container-fluid login_page">
+  <div class="row">
+    <div class="container">
+
+
+      <div class="navigation_12 text-right">
+        <ul>
+          <li><a href="javascript:void(0)">Home</a></li>
+          <li><a href="javascript:void(0)">About</a></li>
+          <li><a href="javascript:void(0)">Blog</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="login_area">
+    <div class="container">
+      <div class="col-md-6 col-sm-12 col-xs-12">
+        <div class="logo">
+          <a href="javascript:void(0)"><img src="image/logo-graspoy-new.png" alt="logo" class="img-responsive"></a>
+        </div>
+      </div>
+      <div class="col-md-6 col-sm-12 col-xs-12">
+
+        <form name="loginForm" novalidate>
+          <div ng-class="{ 'alert': flash, 'alert-success': flash.type === 'success', 'alert-danger': flash.type === 'error' }" ng-if="flash" ng-bind="flash.message"></div>
+          <h2>LOGIN</h2>
+          <div class="email_area">
+            <label>Email</label>
+            <input type="email" class="email" ng-model="username.email" ng-class="{ 'has-error' : (loginForm.email.$dirty || submitted) && loginForm.email.$error.required}" name="email" required>
+            <span ng-show="(loginForm.email.$dirty || submitted) && loginForm.email.$error.required" class="help-block"> Email is required.</span>
+            <span ng-show="(loginForm.email.$dirty || submitted ) && loginForm.email.$error.email  && loginForm.email.$invalid" class="help-block">Email not valid.</span>
+          </div>
+          <div class="pass_area">
+            <label>Password</label>
+            <input type="password" class="password" ng-model="username.password" ng-class="{ 'has-error' : (loginForm.password.$dirty || submitted) && loginForm.password.$error.required}" name="password" required>
+            <span ng-show="(loginForm.password.$dirty || submitted) && loginForm.password.$error.required" class="help-block"> Password is required.</span>
+          </div>
+          <!-- <div class="forget_area">
+            <a href="javascript:void(0)">Forget Password?</a>
+          </div> -->
+          <div class="submit_area">
+            <input type="submit" value="LOGIN" ng-click="submitLogin()">
+          </div>
+          <!--<a ui-sref="register">Create Account</a>-->
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,123 @@
+<!--banner area start-->
+<section>
+  <div class="banner">
+    <img src="image/banner_img.png" alt="banner_icon" class="img-responsive">
+  </div>
+</section>
+<!--banner area end-->
+<!--Search_section Start-->
+<section class="Search_section">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6 col-sm-6 col-xs-12 left_side">
+        <h2 class="pull-left">LIST OF LESSONS</h2>
+        <div class="plus_point pull-left">
+          <a href="javascript:void(0)" ng-click="addLeasons()"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span></a>
+        </div>
+      </div>
+      <div class="col-md-6 col-sm-6 col-xs-12 pull-right right_side">
+        <div class="srching">
+          <label for="">Search For</label>
+          <div class="serch_boxx">
+            <input type="text" class="src_bar" ng-model="lessonFilter">
+            <a href="javascript:void(0)" class="src_btn"><img src="image/src_icon.png" alt="src_icon"></a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!--Search_section End-->
+<!-- Table Start-->
+<section>
+  <div class="container">
+    <div class="">
+      <div class="table-responsive">
+        <table class="table listed_table">
+          <thead>
+            <tr>
+              <th>
+                <a ng-click="sortType = 'title'; sortReverse = !sortReverse">
+                                Title
+                                <span ng-show="sortType == 'title' && !sortReverse" class="fa fa-caret-down"></span>
+                                <span ng-show="sortType == 'title' && sortReverse" class="fa fa-caret-up"></span>
+                              </a>
+              </th>
+              <th>
+                <a ng-click="sortType = 'lessonType'; sortReverse = !sortReverse">
+                                Type
+                                <span ng-show="sortType == 'lessonType' && !sortReverse" class="fa fa-caret-down"></span>
+                                <span ng-show="sortType == 'lessonType' && sortReverse" class="fa fa-caret-up"></span>
+                              </a>
+              </th>
+              <th>
+                <a ng-click="sortType = 'state'; sortReverse = !sortReverse">
+                                Published
+                                <span ng-show="sortType == 'state' && !sortReverse" class="fa fa-caret-down"></span>
+                                <span ng-show="sortType == 'state' && sortReverse" class="fa fa-caret-up"></span>
+                              </a>
+              </th>
+              <th>
+                <a ng-click="sortType = 'attempts'; sortReverse = !sortReverse">
+                                Attempts
+                                <span ng-show="sortType == 'attempts' && !sortReverse" class="fa fa-caret-down"></span>
+                                <span ng-show="sortType == 'attempts' && sortReverse" class="fa fa-caret-up"></span>
+                              </a>
+              </th>
+              <th>
+                <a ng-click="sortType = 'passingGrades'; sortReverse = !sortReverse">
+                                Passing Grades(%)
+                                <span ng-show="sortType == 'passingGrades' && !sortReverse" class="fa fa-caret-down"></span>
+                                <span ng-show="sortType == 'passingGrades' && sortReverse" class="fa fa-caret-up"></span>
+                              </a>
+              </th>
+              <th>Link</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr ng-if="showLoader">
+              <td colspan="10">
+                <div ng-show="showLoader" style="text-align: center;">
+                  <!-- so this div containing img will be dislpayed only when the showLoader is equal to true-->
+                  <img src="../image/loader.gif" style="width: 10%;">
+                  <!-- or any other spinner -->
+                </div>
+              </td>
+            </tr>
+            <tr ng-if="lessons.length == 0 && showLoader == false">
+              <td colspan="10">No lesson created yet, Please click add button above to create lesson</td>
+            </tr>
+            <tr dir-paginate="lesson in lessons | itemsPerPage: 10 | filter : lessonFilter | orderBy : sortType : sortReverse" total-items="totalCount">
+              <td>{{lesson.title}}</td>
+              <td>{{lesson.lessonType}}</td>
+              <td>{{lesson.state}}</td>
+              <td>{{lesson.attempts}}</td>
+              <td>{{lesson.passingGrades}}</td>
+              <td>{{lesson.resource}}</td>
+              <td>
+                <a href="javascript:void(0)"><img src="image/edit_icon.png" alt="edit logo"></a>
+                <a href="javascript:void(0)" ng-click="deleteLesson(lesson)"><img src="image/delete_icon.png" alt="delete icon"></a>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- Table end-->
+<!-- Pagination Start -->
+<<section>
+  <div class="container">
+    <div class="pagination_area text-center">
+      <dir-pagination-controls on-page-change="pageChanged(newPageNumber)"></dir-pagination-controls>
+    </div>
+  </div>
+  </section>
+  <!-- Pagination End -->
+  <!--Footer area start-->
+  <footer>
+    <p>Copyright &copy GraspU</p>
+  </footer>
+  <!--Footer area END-->

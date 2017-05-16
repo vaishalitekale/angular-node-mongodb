@@ -1,0 +1,171 @@
+<!--banner area start-->
+<section>
+    <div class="banner">
+        <img src="image/banner_img.png" alt="banner_icon" class="img-responsive">
+    </div>
+</section>
+<!--banner area end-->
+<!--Search_section Start-->
+<section class="Search_section">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 col-sm-6 col-xs-12 left_side">
+                <h2 class="pull-left">LIST OF CLIENTS</h2>
+                <div class="plus_point pull-left">
+                    <a ng-click="addClient()" href="javascript:void(0)"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span></a>
+                </div>
+            </div>
+
+            <div class="col-md-3 col-sm-3 col-xs-12 right_side" ng-if="visible">
+                <div class="srching">
+                    <label for="">Select Reseller</label>
+                    <div class="drop-serch_boxx">
+                        <select id="resfilter" class="form-control" name="resfilter" ng-model="resfilter" ng-change="changeFilter(resfilter)">
+                            <option ng-repeat="list in resellerList" value="{{list._id}}">{{list.firstName}} {{list.lastName}} </option>
+                        </select>
+                    </div>
+
+                </div>
+            </div>
+            <div class="col-md-3 col-sm-3 col-xs-12 pull-right right_side">
+                <div class="srching">
+                    <label for="">Search Client</label>
+                    <div class="serch_boxx">
+
+                        <input type="text" class="src_bar" ng-model="textFilter">
+                        <a href="javascript:void(0)" class="src_btn"><img src="image/src_icon.png" alt="src_icon"></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!--Search_section End-->
+<!-- Table Start-->
+<section>
+    <div class="container">
+        <div class="">
+            <div class="table-responsive">
+                <table class="table listed_table">
+                    <thead>
+                        <tr>
+                            <th>Logo</th>
+                            <th>Image</th>
+                            <th>
+                                <a ng-click="sortType = 'firstName'; sortReverse = !sortReverse">
+                  FirstName
+                  <span ng-show="sortType == 'firstName' && !sortReverse" class="fa fa-caret-down"></span>
+                  <span ng-show="sortType == 'firstName' && sortReverse" class="fa fa-caret-up"></span>
+                </a>
+                            </th>
+                            <th>
+                                <a ng-click="sortType = 'lastName'; sortReverse = !sortReverse">
+                  LastName
+                  <span ng-show="sortType == 'lastName' && !sortReverse" class="fa fa-caret-down"></span>
+                  <span ng-show="sortType == 'lastName' && sortReverse" class="fa fa-caret-up"></span>
+                </a>
+                            </th>
+                            <th>
+                                <a ng-click="sortType = 'username'; sortReverse = !sortReverse">
+                  UserName
+                  <span ng-show="sortType == 'username' && !sortReverse" class="fa fa-caret-down"></span>
+                  <span ng-show="sortType == 'username' && sortReverse" class="fa fa-caret-up"></span>
+                </a>
+                            </th>
+                            <th>
+                                <a ng-click="sortType = 'company'; sortReverse = !sortReverse">
+                  Comapany
+                  <span ng-show="sortType == 'company' && !sortReverse" class="fa fa-caret-down"></span>
+                  <span ng-show="sortType == 'company' && sortReverse" class="fa fa-caret-up"></span>
+                </a>
+                            </th>
+                            <th>
+                                <a ng-click="sortType = 'email'; sortReverse = !sortReverse">
+                  Email
+                  <span ng-show="sortType == 'email' && !sortReverse" class="fa fa-caret-down"></span>
+                  <span ng-show="sortType == 'email' && sortReverse" class="fa fa-caret-up"></span>
+                </a>
+                            </th>
+                            <th>
+                                Status</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-if="showLoader">
+                            <td colspan="10">
+                                <div ng-show="showLoader" style="text-align: center;">
+                                    <!-- so this div containing img will be dislpayed only when the showLoader is equal to true-->
+                                    <img src="../image/loader.gif" style="width: 10%;">
+                                    <!-- or any other spinner -->
+                                </div>
+                            </td>
+                        </tr>
+
+                        <tr ng-if="clients.length == 0">
+                            <td colspan="10">No client created yet, Please click add button above to create client</td>
+                        </tr>
+                        <tr dir-paginate="client in clients | itemsPerPage: 1 | filter : textFilter | filter : resfilter | orderBy : sortType : sortReverse">
+                            <td ng-if="client.companyLogoURL != null"><img style=" max-width: 40px" ng-src="{{'/static/'+client.companyLogoURL}}" alt="logo" class="img-responsive"></td>
+                            <td ng-if="client.companyLogoURL == null"><img src="image/table_logo.png" alt="logo" class="img-responsive"></td>
+                            <td ng-if="client.profileImageURL != null"><img style=" max-width: 40px" ng-src="{{'/static/'+client.profileImageURL}}" alt="logo" class="img-responsive"></td>
+                            <td ng-if="client.profileImageURL == null"><img src="image/table_logo.png" alt="logo" class="img-responsive"></td>
+                            <!--<td><img src="image/table_logo.png" alt="logo" class="img-responsive"></td>
+              <td><img src="image/table_logo.png" alt="logo" class="img-responsive"></td>-->
+                            <td>{{client.firstName}}</td>
+                            <td>{{client.lastName}}</td>
+                            <td>{{client.username}}</td>
+                            <td>{{client.company}}</td>
+                            <td>{{client.email}}</td>
+                            <td ng-class="{inactive_status: client.status == 'Inactive'}" class="status_12">{{client.status}}</td>
+                            <td>
+                                <a href="javascript:void(0)" ng-click="editClient(client)"><img src="image/edit_icon.png" alt="edit logo"></a>
+                                <a href="javascript:void(0)" ng-click="deleteClient(client)"><img src="image/delete_icon.png" alt="delete icon"></a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Table end-->
+<dir-pagination-controls></dir-pagination-controls>
+
+<!-- Pagination Start -->
+<section>
+    <div class="container">
+        <div class="pagination_area text-center">
+            <div class="two_btns">
+                <!--<a href="#" class="Previous_btn">Previous Page</a>
+        <a href="#" class="Next_btn">Next Page</a>-->
+                <div class="pagination pagination_part">
+
+                    <!--<nav aria-label="Page navigation example">
+            <ul class="pagination">
+              <li class="page-item">
+                <a class="page-link" ng-disabled="currentPage == 0" ng-click="currentPage=currentPage-1" aria-label="Previous">
+                  <span aria-hidden="true">&laquo;</span>
+                  <span class="sr-only">Previous</span>
+                </a>
+              </li>
+              <li class="page-item"><a class="page-link">{{currentPage+1}}/{{numberOfPages()}}</a></li>
+              <li class="page-item">
+                <a class="page-link" ng-disabled="currentPage >= getData().length/pageSize - 1" ng-click="currentPage=currentPage+1" aria-label="Next">
+                  <span aria-hidden="true">&raquo;</span>
+                  <span class="sr-only">Next</span>
+                </a>
+              </li>
+            </ul>
+          </nav>-->
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Pagination End -->
+<!--Footer area start-->
+<footer>
+    <p>Copyright &copy GraspU</p>
+</footer>
+<!--Footer area END-->

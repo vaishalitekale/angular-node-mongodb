@@ -1,0 +1,71 @@
+<!--banner area start-->
+<section>
+  <div class="banner">
+    <img src="image/banner_img.png" alt="banner_icon" class="img-responsive">
+  </div>
+</section>
+<!--banner area end-->
+<!-- form-Area Start-->
+<section class="sign_up">
+  <div class="container">
+    <div class="col-md-12 col-sm-12 col-xs-12">
+      <h1 class="pull-left">Create Lesson</h1>
+    </div>
+    <form name="lessonForm" novalidate>
+      <div class="col-md-6 col-sm-6">
+        <div class="first_name">
+          <label>Title</label>
+          <input type="text" class="first_name" ng-model="lesson.title" ng-class="{ 'has-error' : (lessonForm.title.$dirty || submitted) && lessonForm.title.$error.required}" name="title" required>
+          <span ng-show="(lessonForm.title.$dirty || submitted) && lessonForm.title.$error.required" class="help-block"> Title is required.</span>
+        </div>
+      </div>
+      <div class="col-md-6 col-sm-6">
+        <div class="last_name">
+          <label>Select Lesson Type</label>
+          <select name="lessonType" id="" ng-options="option.name for option in lessonType.availableOptions track by option.id" ng-model="lessonType.selectedOption" ng-change="updatestateBill()" ng-class="{ 'has-error' : (lessonForm.lessonType.$dirty || submitted) && lessonForm.lessonType.$error.required}"
+            required></select>
+          <span ng-show="(lessonForm.lessonType.$dirty || submitted) && lessonForm.lessonType.$error.required" class="help-block"> Type is required.</span>
+        </div>
+      </div>
+
+      <div class="col-md-6 col-sm-6">
+        <div class="your_email">
+          <label>Number of Attempts</label>
+          <select name="attempts" id="" ng-options="option.name for option in attempts.availableOptions track by option.id" ng-model="attempts.selectedOption" ng-change="updateAttempts()" ng-class="{ 'has-error' : (lessonForm.attempts.$dirty || submitted) && lessonForm.attempts.$error.required}"
+            required></select>
+          <span ng-show="(lessonForm.attempts.$dirty || submitted) && lessonForm.attempts.$error.required" class="help-block"> Attempts are required.</span>
+        </div>
+      </div>
+      <div class="col-md-6 col-sm-6">
+
+        <div class="your_email">
+          <label>Published</label>
+          <select name="state" id="" ng-options="option.name for option in state.availableOptions track by option.id" ng-model="state.selectedOption" ng-change="updatePublishedState()" ng-class="{ 'has-error' : (lessonForm.state.$dirty || submitted) && lessonForm.state.$error.required}"
+            required></select>
+          <span ng-show="(lessonForm.state.$dirty || submitted) && lessonForm.state.$error.required" class="help-block"> Published State is required.</span>
+        </div>
+      </div>
+      <div class="col-md-6 col-sm-6">
+        <div class="first_name">
+          <label>Passing Grades(%)</label>
+          <input type="number" max="100" min="0" ng-maxlength="3" class="UserName" ng-model="lesson.passingGrades" ng-class="{ 'has-error' : (lessonForm.passingGrades.$dirty || submitted) && lessonForm.passingGrades.$error.required}" name="passingGrades" required>
+          <span ng-show="(lessonForm.passingGrades.$dirty || submitted) && lessonForm.passingGrades.$error.required" class="help-block"> Grades are required.</span>
+          <p ng-show="(lessonForm.passingGrades.$dirty || submitted ) && (lessonForm.passingGrades.$error.required  || lessonForm.passingGrades.$invalid)" class="help-block">Maximum limit is 100.</p>
+        </div>
+      </div>
+
+      <div class="col-md-6 col-sm-6">
+        <div class="your_email">
+          <label>Enter Link</label>
+          <input type="text" class="UserName" ng-model="lesson.resource" ng-class="{ 'has-error' : (lessonForm.resource.$dirty || submitted) && lessonForm.resource.$error.required}" name="resource" required>
+          <span ng-show="(lessonForm.resource.$dirty || submitted) && lessonForm.resource.$error.required" class="help-block"> Link is required.</span>
+        </div>
+      </div>
+
+
+      <div class="col-md-12 col-sm-12 text-center">
+        <input type="submit" value="Create" class="create_btn" ng-click="createlesson()">
+      </div>
+    </form>
+  </div>
+</section>

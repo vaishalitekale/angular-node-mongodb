@@ -1,0 +1,53 @@
+<!--banner area start-->
+<section>
+  <div class="banner">
+    <img src="image/banner_img.png" alt="banner" class="img-responsive">
+  </div>
+</section>
+<!--banner area end-->
+<!--SERVICES area start-->
+<section class="service_area">
+  <div class="container">
+    <div class="col-md-3 col-md-3 col-sm-6 col-xs-12" ng-show="showResellerMenu === true">
+      <a ui-sref="listreseller" href="javascript:void(0)" ng-click="serviceClicked('Reseller')">
+        <div class="service img-circle">
+          <img src="image/icon_1.png" alt="Reseller_icon" class="img-responsive">
+          <img src="image/icon_1(2).png" alt="Reseller_icon" class="img-responsive">
+        </div>
+        <h3>Reseller</h3>
+      </a>
+    </div>
+    <div class="col-md-3 col-md-3 col-sm-6 col-xs-12">
+      <a ui-sref="listclient" href="javascript:void(0)" ng-click="serviceClicked('Client')">
+        <div class="service img-circle">
+          <img src="image/icon_2.png" alt="Reseller_icon" class="img-responsive">
+          <img src="image/icon_2(2).png" alt="Reseller_icon" class="img-responsive">
+        </div>
+        <h3>Client</h3>
+      </a>
+    </div>
+    <div class="col-md-3 col-md-3 col-sm-6 col-xs-12">
+      <a href="javascript:void(0)">
+        <div class="service img-circle">
+          <img src="image/icon_3.png" alt="Reseller_icon" class="img-responsive">
+          <img src="image/icon_3(2).png" alt="Reseller_icon" class="img-responsive">
+        </div>
+        <h3>Staff</h3>
+      </a>
+    </div>
+    <div class="col-md-3 col-md-3 col-sm-6 col-xs-12">
+      <a href="javascript:void(0)" ng-click="serviceClicked('Lesson')" ui-sref="lessons">
+        <div class="service img-circle">
+          <img src="image/icon_4.png" alt="Reseller_icon" class="img-responsive">
+          <img src="image/icon_4(2).png" alt="Reseller_icon" class="img-responsive">
+        </div>
+        <h3>Lessons</h3>
+      </a>
+    </div>
+  </div>
+</section>
+<!--SERVICES area start-->
+<!--Footer area start-->
+<footer>
+  <p>Copyright &copy GraspU</p>
+</footer>
